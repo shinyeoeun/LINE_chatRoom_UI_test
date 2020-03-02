@@ -14,17 +14,43 @@
         <parameter name="autoname" value="uiautomator2"/>
         <parameter name="systemp" value="8201"/>
         <classes>
-            <class name="LineChatRoomTest2">
+            <class name="LineChatRoomTest">
                 <methods>
                     <include name="TC_01_chatStart_A"/>
                     <include name="TC_02_sendTextMessage_A"/>
-                    <include name="TC_03_receiveTextMessage_B"/>
-                    <include name="TC_04_groupCallStart_A"/>
+                    <exclude name="TC_03_chatRoomCreated_B"/>
+                    <exclude name="TC_04_chatRoomAccess_B"/>
+                    <exclude name="TC_05_valifyReceivedText_B"/>
                 </methods>
             </class>
         </classes>
     </test> <!-- start -->
 
-
-
 </suite> <!-- Suite -->
+
+    <!--
+    <test name="Join device(Galaxy Note 7)" preserve-order="true">
+
+        <parameter name="platform" value="Android" />
+        <parameter name="appl" value="app" />
+        <parameter name="port" value="4600" />
+        <parameter name="ver" value="9.0" />
+        <parameter name="device" value="Galaxy Note 7" />
+        <parameter name="udid" value="ce071607e274b21d03"/>
+        <parameter name="autoname" value="uiautomator2"/>
+        <parameter name="systemp" value="8202"/>
+        <classes>
+            <class name="LineChatRoomTest">
+                <methods>
+                    <exclude name="TC_01_chatStart_A"/>
+                    <exclude name="TC_02_sendTextMessage_A"/>
+                    <exclude name="TC_03_chatRoomCreated_B"/>
+                    <exclude name="TC_03_chatRoomCreated_B"/>
+                    <include name="TC_04_chatRoomAccess_B"/>
+                    <include name="TC_05_valifyReceivedText_B"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    -->
+
