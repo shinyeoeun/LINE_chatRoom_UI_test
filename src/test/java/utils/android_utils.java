@@ -48,4 +48,8 @@ public class android_utils {
         return element;
     }
 
+    static public WebElement findAttribute(AndroidDriver driver, String attribute, String value){
+        element = driver.findElementByAndroidUIAutomator("new UiSelector()." + attribute + "(" + value + ")");
+        return element;
+    }
 }

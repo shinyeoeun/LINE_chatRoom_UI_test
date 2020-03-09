@@ -6,7 +6,7 @@
           "version":"10.0",
           "maxInstances": 2,
           "platform":"Android",
-          "udid": "R58M46AFQGD"
+          "udid": "10.33.68.103:5555"
         }
       ],
   "configuration":
@@ -16,7 +16,7 @@
     "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
     "url":"http://127.0.0.1:4725/wd/hub",
     "host": "127.0.0.1",
-    "port": 4500,
+    "port": 4700,
     "maxSession": 1,
     "register": true,
     "registerCycle": 5000,

@@ -22,8 +22,8 @@ public class LineChatRoomTest {
     public AndroidDriver driver = null;
     public DesiredCapabilities capabilities = new DesiredCapabilities();
     public String PACKAGE = "jp.naver.line.android";
-    public String START_DEVICE_USER_NAME = "申";
-    public String JOIN_DEVICE_USER_NAME = "SHIN";
+    public String START_DEVICE_USER_NAME = "LION";
+    public String JOIN_DEVICE_USER_NAME = "TIGER";
     public String SEND_TEXT = "I WILL CALL YOU";
 
     @BeforeClass
@@ -60,11 +60,12 @@ public class LineChatRoomTest {
     // 송신측 신규 대화 개시 > 쳇룸 생성
     @Test
     public void TC_01_chatStart_A() throws Exception {
-        logger = report.startTest("Case1: 신규 대화 개시");
-        
+        logger = report.startTest("message test");
+        //logger = report.startTest("Device A: 신규 대화 개시");
         logger.log(LogStatus.INFO, "Step: LINE 앱 실행");
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
-        Thread.sleep(2000);
+        logger.log(LogStatus.INFO, "Step: 친구 리스트에서 대화상대 ID 탭");
+        logger.log(LogStatus.INFO, "Step: 대화상대 프로필 화면에서 토크 버튼 탭");
+        logger.log(LogStatus.INFO, "Expected Result: 대화상대와의 쳇룸이 생성되고 쳇룸타이틀이 대화상대 ID로 표시될 것");
 
         // 하단 메뉴에서 홈 탭 선택
         //driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"@{bottomNavigationBarButtonViewModel.contentDescription\"])[1]/android.widget.TextView")).click();
@@ -72,19 +73,13 @@ public class LineChatRoomTest {
         //logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
         // 친구 리스트에서 대화상대 ID 탭
-        logger.log(LogStatus.INFO, "Step: 친구 리스트에서 대화상대 ID(" + JOIN_DEVICE_USER_NAME + ") 탭");
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         driver.findElement(By.xpath("//android.widget.TextView[@text='" + JOIN_DEVICE_USER_NAME + "']")).click();
         Thread.sleep(1000);
-
         // 대화상대 프로필 화면에서 토크 버튼 탭
-        logger.log(LogStatus.INFO, "Step: 대화상대 프로필 화면에서 토크 버튼 탭");
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
-        android_utils.findString(driver, "\"대화\"").click();
+        android_utils.findString(driver, "\"トーク\"").click();
         Thread.sleep(1000);
 
         // 쳇룸 헤더타이틀에 상대방 ID가 표시되는지 확인
-        logger.log(LogStatus.INFO, "Expected Result: 대화상대와의 쳇룸이 생성되고 쳇룸타이틀이 대화상대 ID로 표시될 것");
         logger.log(LogStatus.INFO, "Test Result: 쳇룸 타이틀> " + android_utils.getHeaderTitle(driver) + "| 대화상대 ID> " + JOIN_DEVICE_USER_NAME);
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
@@ -94,39 +89,36 @@ public class LineChatRoomTest {
     // 송신측 메시지 전송 및 내용확인
     @Test
     public void TC_02_sendTextMessage_A() throws Exception {
-        logger = report.startTest("Case2: 텍스트 메시지 송신");
+        // logger = report.startTest("Device A: 텍스트 메시지 송신");
+        logger.log(LogStatus.INFO, "Step: 텍스트 송신버튼 탭");
+        logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 송신한 텍스트와 송신시간이 표시됨");
 
         // 텍스트 메시지 송신
         driver.findElementById("jp.naver.line.android:id/chathistory_message_edit").clear();
         driver.findElementById("jp.naver.line.android:id/chathistory_message_edit").sendKeys(SEND_TEXT);
         logger.log(LogStatus.INFO, "Step: 텍스트(" + SEND_TEXT + ") 입력");
-        Thread.sleep(1000);
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
-
-        logger.log(LogStatus.INFO, "Step: 텍스트 송신버튼 탭");
-        logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 송신한 텍스트와 송신시간이 표시됨");
         driver.findElementById("jp.naver.line.android:id/chathistory_send_button_image").click();
         Thread.sleep(1000);
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         logger.log(LogStatus.INFO, "Test Result: 텍스트 > " + SEND_TEXT + " | 송신시간 > " + android_utils.getTime());
 
         Assert.assertTrue(driver.findElementByAndroidUIAutomator("new UiSelector().text(\"I WILL CALL YOU\")").isDisplayed());
+
+        Thread.sleep(10000);
     }
 
     // 수신측 토크 리스트에 쳇룸생성 확인
     @Test
     public void TC_03_chatRoomCreated_B() throws Exception {
-        logger = report.startTest("Case3: 쳇룸 생성 확인");
+        // logger = report.startTest("Device B: 쳇룸 생성 확인");
         logger.log(LogStatus.INFO, "Step: 토크탭 진입 > 토크 리스트에 송신측과의 대화방이 생성됨을 확인");
+
+        Thread.sleep(15000);
 
         // 토크 버튼 탭
         driver.findElementByXPath("(//android.view.ViewGroup[@content-desc=\"@{bottomNavigationBarButtonViewModel.contentDescription\"])[2]/android.widget.TextView").click();
-        logger.log(LogStatus.INFO, "탭 헤더타이틀:"+driver.findElementsById("jp.naver.line.android:id/header_title"));
-        Thread.sleep(3000);
-
         // 토크목록에서 쳇룸 생성 확인
         logger.log(LogStatus.INFO, "Expected Result: 토크 리스트에 송신자와의 쳇룸이 생성됨");
-
 
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         logger.log(LogStatus.INFO, "Test Result: 쳇룸리스트 타이틀 > " + START_DEVICE_USER_NAME);
@@ -134,46 +126,79 @@ public class LineChatRoomTest {
         Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='" + START_DEVICE_USER_NAME + "']").isDisplayed());
     }
 
-    // 수신측 토크 리스트에 쳇룸생성 확인
+    // 수신측 토크 리스트에 쳇룸진입
     @Test
     public void TC_04_chatRoomAccess_B() throws Exception {
-        logger = report.startTest("Case3: 쳇룸 진입");
+        // logger = report.startTest("Device B: 쳇룸 진입");
         logger.log(LogStatus.INFO, "Step: 토크 리스트에서 송신측과의 쳇룸을 탭하여 쳇룸 진입");
-
         logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 진입되고 쳇룸 헤더 타이틀에 송신자 ID가 표시됨");
 
         driver.findElementByXPath("//android.widget.TextView[@text='" + START_DEVICE_USER_NAME + "']").click();
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         logger.log(LogStatus.INFO, "Test Result: 쳇룸 헤더 타이틀 > " + START_DEVICE_USER_NAME);
 
-        Assert.assertEquals(driver.findElementsById("jp.naver.line.android:id/header_title"), START_DEVICE_USER_NAME);
+        // Assert.assertEquals(driver.findElementsById("jp.naver.line.android:id/header_title"), START_DEVICE_USER_NAME);
+
     }
 
     // 송신측 메시지 전송 및 내용확인
     @Test
     public void TC_05_valifyReceivedText_B() throws Exception {
-        logger = report.startTest("Case4: 그룹콜 발신");
-        logger.log(LogStatus.INFO, "Step: 쳇룸 상단의「통화」 버튼 탭");
-        logger.log(LogStatus.INFO, "Step:「무료통화」버튼 탭");
-        logger.log(LogStatus.INFO, "Expected Result: 발신이 시작되고 통화화면에 대화상대("+ JOIN_DEVICE_USER_NAME +")의 ID가 표시됨");
-
-        logger = report.startTest("Case5: 수신된 메시지 확인");
+        // logger = report.startTest("Device B: 수신된 메시지 확인");
         logger.log(LogStatus.INFO, "Step: 쳇룸에 표시된 메시지를 확인함");
         logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 수신한 메시지("+ SEND_TEXT +")가 표시됨");
 
+        Thread.sleep(1000);
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         logger.log(LogStatus.INFO, "Test Result: 쳇룸 메시지 > " + SEND_TEXT);
 
         Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='" + SEND_TEXT + "']").isDisplayed());
+
+        Thread.sleep(5000);
     }
 
-    // 송신측 메시지 전송 및 내용확인
     @Test
-    public void TC_06_call_B() throws Exception {
-        logger = report.startTest("Case4: 그룹콜 발신");
+    public void TC_06_call_send_A() throws Exception {
+        // logger = report.startTest("Device A: 보이스콜 발신");
         logger.log(LogStatus.INFO, "Step: 쳇룸 상단의「통화」 버튼 탭");
         logger.log(LogStatus.INFO, "Step:「무료통화」버튼 탭");
-        logger.log(LogStatus.INFO, "Expected Result: 발신이 시작되고 통화화면에 대화상대("+ JOIN_DEVICE_USER_NAME +")의 ID가 표시됨");
+        logger.log(LogStatus.INFO, "Expected Result: 발신이 시작되고 통화화면에 대화상대의 ID가 표시됨");
+
+        driver.findElementByXPath("//android.widget.FrameLayout[@content-desc='発信 ボタン']/android.widget.ImageView").click();
+        android_utils.findString(driver, "\"無料通話\"").click();
+        driver.findElementById("jp.naver.line.android:id/call_mute_btn_icon").click(); // 하울링방지 Mute버튼 클릭
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+
+        logger.log(LogStatus.INFO, "Test Result: 대화상대 ID > " + driver.findElementById("jp.naver.line.android:id/voicecall_target_name").getAttribute("text"));
+
+        Assert.assertTrue(driver.findElementById("jp.naver.line.android:id/voicecall_target_name").isDisplayed());
+    }
+
+    @Test
+    public void TC_07_call_recieve_B() throws Exception {
+        // logger = report.startTest("Device B: 보이스콜 수신");
+        logger.log(LogStatus.INFO, "Step: 수신전화「수락」버튼 탭");
+        logger.log(LogStatus.INFO, "Expected Result: 통화가 시작되고 화면에 통화시간이 표시됨");
+
+        driver.findElementById("jp.naver.line.android:id/accept_button").click();
+        driver.findElementById("jp.naver.line.android:id/call_mute_btn_icon").click();
+
+        logger.log(LogStatus.INFO, "Test Result: 통화시간 > " + driver.findElementById("jp.naver.line.android:id/voicecall_status_message").getAttribute("text"));
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+
+        Assert.assertTrue(driver.findElementById("jp.naver.line.android:id/voicecall_status_message").isDisplayed());
+    }
+
+    @Test
+    public void TC_08_call_finish_A() throws Exception {
+        // logger = report.startTest("Device A: 통화 종료");
+        logger.log(LogStatus.INFO, "Step:「통화종료」버튼 탭");
+        logger.log(LogStatus.INFO, "Expected Result: 통화가 종료되고 쳇룸에 발신이력 표시됨");
+
+        Thread.sleep(5000);
+        driver.findElementById("jp.naver.line.android:id/call_end_btn").click();
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+
     }
 
     @AfterMethod
