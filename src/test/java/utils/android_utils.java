@@ -16,7 +16,7 @@ public class android_utils {
 
     static WebElement element;
 
-    static public String getTime(){
+    static public String getChatRoomDisplayTime(){
         Date today = new Date();
         SimpleDateFormat ampm = new SimpleDateFormat("a", Locale.JAPAN);
         SimpleDateFormat time = new SimpleDateFormat("h:mm");
@@ -48,8 +48,21 @@ public class android_utils {
         return element;
     }
 
-    static public WebElement findAttribute(AndroidDriver driver, String attribute, String value){
-        element = driver.findElementByAndroidUIAutomator("new UiSelector()." + attribute + "(" + value + ")");
-        return element;
+    static public String getNowDateTime(){
+        Date today = new Date();
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd_HHmm");
+
+        String NowDateTime = time.format(today);
+
+        return NowDateTime;
+    }
+
+    static public boolean isElementDisplayed(AndroidDriver driver, By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

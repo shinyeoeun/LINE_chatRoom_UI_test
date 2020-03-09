@@ -14,10 +14,10 @@
         <theme>dark</theme>
 
         <!-- title of the document -->
-        <documentTitle>LINE Automation Report</documentTitle>
+        <documentTitle>LINE Test Automation Result Report</documentTitle>
 
         <!-- report name - displayed at top-nav -->
-        <reportName> LINE Automation Report</reportName>
+        <reportName> LINE Test Automation Report</reportName>
 
         <!-- report headline - displayed at top-nav, after reportHeadline -->
         <reportHeadline> 10.3.0 (BETA) </reportHeadline>
