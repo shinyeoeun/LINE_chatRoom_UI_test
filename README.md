@@ -7,7 +7,8 @@
 * 시나리오: LINE 앱 기동 > 프로필사진 변경 > 카메라촬영 > 필터적용 > 30초간 대기 > 카메라종료 > 앱 
 * 동작영상은 아래 참조
 
-![demo](https://user-images.githubusercontent.com/25470405/76297728-af903b80-62fb-11ea-966b-6f89483cb48a.gif)
+![demo](https://user-images.githubusercontent.com/25470405/76298677-31cd2f80-62fd-11ea-838b-9de97c20376f.gif)
+
 
 
 ## 테스트 결과
