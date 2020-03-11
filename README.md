@@ -2,14 +2,12 @@
 Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테스트하는 스크립트 
 
 ## About Test
-![2020-03-11_11h18_43](https://user-images.githubusercontent.com/25470405/76375849-2411bb80-638a-11ea-88df-10bde95dfed7.png)
+2대의 디바이스에서 두명의 라인유저가 채팅과 통화를 주고받는 시나리오로 구성
 
 ### Test Devices
 Device A(Galayxy S10), Device B(Pixel 4)
 
 ### Scenario
-2대의 디바이스에서 두명의 라인유저가 채팅과 통화를 주고받는 시나리오로 구성
-
 1. Device A: Device B 에게 텍스트 메시지 송신
 2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
 3. Device A: Device B 에게 음성통화 발신
@@ -26,8 +24,9 @@ Device A(Galayxy S10), Device B(Pixel 4)
 
 
 
-
 ## Description
+
+
 
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76375550-730b2100-6389-11ea-932c-b0c93f1f9b75.png)
