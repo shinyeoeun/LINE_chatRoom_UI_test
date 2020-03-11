@@ -37,9 +37,8 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
 
 ## Usage
-1. 테스트환경 셋업
-* Appium server & Selenium Grid 
-![2020-03-09_20h03_30](https://user-images.githubusercontent.com/25470405/76376526-d4cc8a80-638b-11ea-9c2a-e4995028e5da.png)
+1. 병렬테스트환경 셋업
+링크참조
 
 2. TestNG
 
