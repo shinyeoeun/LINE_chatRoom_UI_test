@@ -5,10 +5,10 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
 2대의 디바이스에서 두명의 라인유저가 채팅과 통화를 주고받는 시나리오로 구성
 
 ### Test Devices
-|제목|내용|
-|------|---|
-|Device A|Pixel 4 (10.0)|
-|Device B|Galaxy S10 (9.0)|
+|Name|Device|OS version|
+|------|------|------|
+|Device A|Pixel 4|10.0|
+|Device B|Galaxy S10|9.0|
 
 ### Scenario
 1. Device A: Device B 에게 텍스트 메시지 송신
