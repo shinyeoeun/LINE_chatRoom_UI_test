@@ -1,17 +1,25 @@
 # parallel_TestAutomation_Line_App
-여러 디바이스 병렬 테스트 자동화 스크립트(Appium+TestNG) + Real Device
+TestNG와 Selenium Grid를 이용하여 여러 디바이스를 동시에 테스트하는 스크립트 
 
 ## 테스트 시나리오
-* 병렬테스트를 구현하기 위해 아래와 같이 두 라인 유저가 채팅 및 통화를 주고받는 시나리오로 구성함 
-* 디바이스 구성: 송신측(Galayxy S10), 수신측(Pixel 4)
-* 시나리오: LINE 앱 기동 > 프로필사진 변경 > 카메라촬영 > 필터적용 > 30초간 대기 > 카메라종료 > 앱 
-* 동작영상은 아래 참조
+병렬테스트를 구현하기 위해 아래와 같이 두 라인 유저가 채팅과 통화를 주고받는 시나리오로 구성함 
+* 디바이스 구성: Device A(Galayxy S10), Device B(Pixel 4)
+* 시나리오: 
+1. Device A: Device B 에게 텍스트 메시지 송신
+2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
+3. Device A: Device B 에게 음성통화 발신
+4. Device B: 통화 수락 후 5초간 대기(통화상태)
+4. Device A: 통화 종료
 
-![demo](https://user-images.githubusercontent.com/25470405/76298677-31cd2f80-62fd-11ea-838b-9de97c20376f.gif)
-
+* ↓ 동작영상
+![chatroom](https://user-images.githubusercontent.com/25470405/76373396-a3e85780-6383-11ea-9269-d100f22d626a.gif)
 
 
 ## 테스트 결과
+* 테스트 결과 리포트
+![2020-03-11_10h25_15](https://user-images.githubusercontent.com/25470405/76374294-1f4b0880-6386-11ea-8d1b-3524916f4860.gif)
+
+
 
 
 ## 동작 설명
