@@ -33,7 +33,7 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
 
 
 ## Directory Structure
-![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376477-b8305280-638b-11ea-8a87-d0a8f9fc2721.png)
+![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
 
 ## Usage
 1. 테스트환경 셋업
