@@ -9,20 +9,12 @@
         <parameter name="appl" value="app" />
         <parameter name="port" value="4600" />
         <parameter name="ver" value="6.0" />
-        <parameter name="device" value="Galaxy Note 7" />
-        <!--<parameter name="udid" value="10.33.67.212:5555"/>-->
-        <parameter name="udid" value="98131FFAZ000C2"/>
+        <parameter name="device" value="Pixel 4" />
+        <parameter name="udid" value="10.33.67.212:5555"/>
         <parameter name="autoname" value="uiautomator2"/>
         <parameter name="systemp" value="8202"/>
         <classes>
-            <class name="LineChatRoomTest_bk">
-                <methods>
-                    <include name="TC_01_chatStart_A"/>
-                    <include name="TC_02_sendTextMessage_A"/>
-                    <include name="TC_06_call_send_A"/>
-                    <include name="TC_08_call_finish_A"/>
-                </methods>
-            </class>
+            <class name="LineChatRoomTest_send"/>
         </classes>
     </test>
 
@@ -33,20 +25,11 @@
         <parameter name="port" value="4700" />
         <parameter name="ver" value="9.0" />
         <parameter name="device" value="Galaxy S10" />
-        <!--<parameter name="udid" value="10.33.68.103:5555"/>-->
-        <parameter name="udid" value="R58M46AFQGD"/>
+        <parameter name="udid" value="10.33.68.103:5555"/>
         <parameter name="autoname" value="uiautomator2"/>
         <parameter name="systemp" value="8201"/>
         <classes>
-            <class name="LineChatRoomTest_bk">
-                <methods>
-
-                    <include name="TC_03_chatRoomCreated_B"/>
-                    <include name="TC_04_chatRoomAccess_B"/>
-                    <include name="TC_05_valifyReceivedText_B"/>
-                    <include name="TC_07_call_recieve_B"/>
-                </methods>
-            </class>
+            <class name="LineChatRoomTest_receive"/>
         </classes>
     </test> <!-- start -->
 

@@ -89,13 +89,12 @@ public class LineChatRoomTest_send {
     @Test
     public void TC_02_sendTextMessage_A() throws Exception {
         logger= report.startTest("Case：Device A 텍스트 메시지 송신");
-        logger.log(LogStatus.INFO, "Step: 텍스트 송신버튼 탭");
+        logger.log(LogStatus.INFO, "Step: 텍스트 입력 후 송신버튼 탭");
         logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 송신한 텍스트와 송신시간이 표시됨");
 
         // 텍스트 메시지 송신
         driver.findElementById("jp.naver.line.android:id/chathistory_message_edit").clear();
         driver.findElementById("jp.naver.line.android:id/chathistory_message_edit").sendKeys(SEND_TEXT);
-        logger.log(LogStatus.INFO, "Step: 텍스트(" + SEND_TEXT + ") 입력");
         driver.findElementById("jp.naver.line.android:id/chathistory_send_button_image").click();
         Thread.sleep(1000);
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
@@ -108,16 +107,15 @@ public class LineChatRoomTest_send {
     // 송신측 메시지 읽음 표시 확인
     @Test
     public void TC_03_msg_readed() throws Exception {
-        logger= report.startTest("Case：Device A 메시지읽음(既読) 표시 확인");
-        logger.log(LogStatus.INFO, "Step: 읽은 메시지에 ”既読” 표시 확인");
-        logger.log(LogStatus.INFO, "Expected Result: 메시지에 ”既読” 이 표시됨");
+        logger= report.startTest("Case：Device A 메시지읽음 표시");
+        logger.log(LogStatus.INFO, "Step: 읽은 메시지 표시 확인");
+        logger.log(LogStatus.INFO, "Expected Result: 읽은 메시지에 ”既読(읽음)” 표시됨");
 
         logger.log(LogStatus.INFO, "Test Result: 읽음표시 텍스트 > " + driver.findElementById("jp.naver.line.android:id/chathistory_row_read_count").getAttribute("text"));
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
         Assert.assertTrue(driver.findElementById("jp.naver.line.android:id/chathistory_row_read_count").isDisplayed());
     }
-
 
     // 송신측 보이스콜 발신
     @Test
@@ -127,6 +125,8 @@ public class LineChatRoomTest_send {
         logger.log(LogStatus.INFO, "Step:「무료통화」버튼 탭");
         logger.log(LogStatus.INFO, "Expected Result: 발신이 시작되고 통화화면에 대화상대의 ID가 표시됨");
 
+        //todo debug 표시 방해 우회 처리 > 디바이스 바꾸면 해결
+        Thread.sleep(5000);
         driver.findElementByXPath("//android.widget.FrameLayout[@content-desc='発信 ボタン']/android.widget.ImageView").click();
         android_utils.findString(driver, "\"無料通話\"").click();
         driver.findElementById("jp.naver.line.android:id/call_mute_btn_icon").click(); // 하울링방지 Mute버튼 클릭
@@ -151,6 +151,7 @@ public class LineChatRoomTest_send {
         }
 
         driver.findElementById("jp.naver.line.android:id/call_end_btn").click();
+        Thread.sleep(1000);
         logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
     }

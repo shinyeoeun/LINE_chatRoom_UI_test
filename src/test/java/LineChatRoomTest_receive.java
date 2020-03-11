@@ -62,14 +62,13 @@ public class LineChatRoomTest_receive {
     public void TC_01_chatRoomCreated_B() throws Exception {
         logger= report.startTest("Case: Device B 쳇룸 생성 확인");
         logger.log(LogStatus.INFO, "Step: 토크탭 진입 > 토크 리스트에 송신측과의 대화방이 생성됨을 확인");
-
-        // 토크 버튼 탭
-        driver.findElementByXPath("(//android.view.ViewGroup[@content-desc=\"@{bottomNavigationBarButtonViewModel.contentDescription\"])[2]/android.widget.TextView").click();
-        // 토크목록에서 쳇룸 생성 확인
         logger.log(LogStatus.INFO, "Expected Result: 토크 리스트에 송신자와의 쳇룸이 생성됨");
 
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+        driver.findElementByXPath("(//android.view.ViewGroup[@content-desc=\"@{bottomNavigationBarButtonViewModel.contentDescription\"])[2]/android.widget.TextView").click();
+
         logger.log(LogStatus.INFO, "Test Result: 쳇룸리스트 타이틀 > " + START_DEVICE_USER_NAME);
+        Thread.sleep(1000);
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
         Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='" + START_DEVICE_USER_NAME + "']").isDisplayed());
     }
@@ -87,8 +86,9 @@ public class LineChatRoomTest_receive {
         }
 
         driver.findElementByXPath("//android.widget.TextView[@text='" + START_DEVICE_USER_NAME + "']").click();
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
         logger.log(LogStatus.INFO, "Test Result: 쳇룸 헤더 타이틀 > " + START_DEVICE_USER_NAME);
+        Thread.sleep(1000);
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
 
         // Assert.assertEquals(driver.findElementsById("jp.naver.line.android:id/header_title"), START_DEVICE_USER_NAME);
 
@@ -97,7 +97,7 @@ public class LineChatRoomTest_receive {
     // 수신측 수신내용(메시지/시간) 확인
     @Test
     public void TC_03_valifyReceivedText_B() throws Exception {
-        logger= report.startTest("Case：Device B 수신내용(메시지/수신시간) 확인");
+        logger= report.startTest("Case：Device B 수신내용 확인");
         logger.log(LogStatus.INFO, "Step: 쳇룸에 표시된 메시지/수신시간을 확인");
         logger.log(LogStatus.INFO, "Expected Result: 쳇룸에 수신받은 메시지와 수신시간이 표시됨");
         Thread.sleep(1000);
