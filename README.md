@@ -3,7 +3,9 @@ TestNG와 Selenium Grid를 이용하여 여러 디바이스를 동시에 테스�
 
 ## 테스트 시나리오
 병렬테스트를 구현하기 위해 아래와 같이 두 라인 유저가 채팅과 통화를 주고받는 시나리오로 구성함 
-* 디바이스 구성: Device A(Galayxy S10), Device B(Pixel 4)
+* 디바이스 구성: 
+Device A(Galayxy S10), Device B(Pixel 4)
+
 * 시나리오: 
 1. Device A: Device B 에게 텍스트 메시지 송신
 2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
