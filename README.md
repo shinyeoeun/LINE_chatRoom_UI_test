@@ -217,12 +217,9 @@
     ```
     
 * API
-개인프로젝트고 API 남길만한 코드는 아니지만 intelij 사용법 연습겸 공통모듈한정으로 javadoc을 작성해봄
-![2020-03-12_17h35_23](https://user-images.githubusercontent.com/25470405/76502864-29edc680-6488-11ea-8d54-14de1549dab4.png)
 
-javadoc 출력설정 
-![2020-03-12_12h36_20](https://user-images.githubusercontent.com/25470405/76502900-38d47900-6488-11ea-89e9-3e526d88b89f.png)
-
+    개인프로젝트고 API 남길만한 코드는 아니지만 intelij 사용법 연습겸 공통모듈한정으로 javadoc을 작성해봄
+![2020-03-12_17h35_23](https://user-images.githubusercontent.com/25470405/76503986-26f3d580-648a-11ea-8401-2a2aa9c1e55d.png)
 
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
