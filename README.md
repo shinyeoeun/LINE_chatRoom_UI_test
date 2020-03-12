@@ -224,11 +224,6 @@
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76504044-42f77700-648a-11ea-9ddf-526d8c9ee2cd.png)
 
-## Usage
-1. 병렬테스트환경 셋업
-링크참조
-
-2. TestNG
 
 ## References
 * https://appiumpro.com/editions/5
