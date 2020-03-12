@@ -8,11 +8,11 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
 ![chatroom](https://user-images.githubusercontent.com/25470405/76373396-a3e85780-6383-11ea-9269-d100f22d626a.gif)
 
 ### Scenario
-> 1. Device A: Device B 에게 텍스트 메시지 송신
-> 2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
-> 3. Device A: Device B 에게 음성통화 발신
-> 4. Device B: 통화 수락 후 5초간 대기(통화상태)
-> 4. Device A: 통화 종료
+    1. Device A: Device B 에게 텍스트 메시지 송신
+    2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
+    3. Device A: Device B 에게 음성통화 발신
+    4. Device B: 통화 수락 후 5초간 대기(통화상태)
+    5. Device A: 통화 종료
 
 ### Test Devices
 |Name|Device|OS version|
@@ -69,7 +69,7 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
     ```
     + parameter
     
-      각 디바이스의 capability 값들을 정의
+      각 디바이스의 capability 값들을 정의 <br/>
       ※ systemPort와 port값은 각 디바이스마다 다르게 설정해야함 (systemPort: 8201~ / port: 4724~) 아래는 예시
 
         |Name|port|systemPort|
@@ -93,6 +93,7 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
         ```
     
      + preserve-order
+     
        같은 스크립트를 여러 디바이스에서 동시에 실행하려면를 "false"로 지정 <br/> 
        본 테스트는 test별로 각각 다른 스크립트를 사용하므로 default(true)로 지정  
         ```xml
@@ -101,9 +102,85 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
         ```
 ### 2. 테스트 스크립트 작성
 
-```java
+* @BeforeClass
 
-```
+    테스트케이스를 실행하기 전에 사전에 필요한 설정들을 정의하는 메소드 <br/>
+    @parameter 어노테이션에 Appium서버로 넘길 capabilities를 정의해 놓으면<br/>
+    테스트 실행시 test suite xml에 정의된 값들로 매핑됨
+
+    ```java
+    @BeforeClass
+    @Parameters({"platform", "platformName", "udid", "deviceName", "platformVersion", "automationName", "systemPort"})
+    public void setUp(String platformName, String port, String udid, String deviceName, String platformVersion, String automationName, String systemPort) throws MalformedURLException {
+
+        capabilities.setCapability("newCommandTimeout", 10000); // appium timeout
+        capabilities.setCapability("platformName", platformName);
+        capabilities.setCapability("platformVersion", platformVersion);
+        capabilities.setCapability("noReset", true);
+        capabilities.setCapability("appPackage", PACKAGE);
+        capabilities.setCapability("deviceName", deviceName);
+        capabilities.setCapability("udid", udid);
+        capabilities.setCapability("appActivity", ".activity.SplashActivity");
+        capabilities.setCapability("unicodeKeyboard", false);
+        capabilities.setCapability("autoGrantPermissions", true);
+        capabilities.setCapability("automationName", automationName);
+        capabilities.setCapability("systemPort", systemPort);
+
+        driver = new AndroidDriver(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+    ```
+* @Test
+
+    테스트 케이스 작성 <br/>
+    logger(for 테스트 결과리포트) 생성 > 실제 앱 조작 > 결과판정 순으로 동작
+
+    ```java
+    @Test
+    public void TC_03_msg_readed() throws Exception {
+        logger = report.startTest("Case：Device A 메시지읽음 표시");
+        logger.log(LogStatus.INFO, "Step: 읽은 메시지 표시 확인");
+        logger.log(LogStatus.INFO, "Expected Result: 읽은 메시지에 ”既読(읽음)” 표시됨");
+
+        boolean isDisplayed = false;
+        while(isDisplayed){isDisplayed = android_utils.isElementDisplayed(driver, By.id(prefix + ":id/chathistory_row_read_count"));}
+        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+
+        logger.log(LogStatus.INFO, "Test Result: 텍스트> "\+driver.findElementById(prefix+":id/chathistory_row_read_count").getAttribute("text"));
+        Assert.assertEquals(driver.findElementById(prefix+":id/chathistory_row_read_count").getAttribute("text"), "既読");
+    }
+
+    ```
+    
+* @AfterMethod
+
+    각 메소드(테스트케이스) 종료시에 수행할 작업들을 정의<br/>
+    여기서는 assert문 결과값 기반으로 테스트결과리포트 출력처리를 수행
+
+    ```java
+    @AfterMethod
+    public void getResult(ITestResult result) throws Exception {
+        if (result.getStatus() == ITestResult.FAILURE){
+            logger.log(LogStatus.FAIL, result.getName());
+            logger.log(LogStatus.FAIL, result.getThrowable());
+            logger.log(LogStatus.FAIL, "Test Case Fail" + logger.addScreenCapture(android_utils.getScreenshot(driver)));
+
+        } else if (result.getStatus() == result.SUCCESS){
+            logger.log(LogStatus.PASS, result.getName());
+        }
+        report.endTest(logger);
+        report.flush();
+        }
+ 
+    ```       
+    
+* @AfterClass
+    모든 테스트케이스 종료 후 수행할 작업들을 정의 
+    
+    ```java
+    @AfterClass
+    public void endTest() {
+        driver.quit();
+    }
+    ```
 
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
