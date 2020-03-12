@@ -222,8 +222,7 @@
 ![2020-03-12_17h35_23](https://user-images.githubusercontent.com/25470405/76503986-26f3d580-648a-11ea-8401-2a2aa9c1e55d.png)
 
 ## Directory Structure
-![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
-
+![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76504044-42f77700-648a-11ea-9ddf-526d8c9ee2cd.png)
 
 ## Usage
 1. 병렬테스트환경 셋업
