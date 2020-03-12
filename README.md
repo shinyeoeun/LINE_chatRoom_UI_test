@@ -33,7 +33,7 @@
 
 ## Description
 
-### 1. test suite용 xml파일을 작성
+### 1. test suite xml파일
 
 * suite
     
@@ -102,7 +102,7 @@
         <!-- 무작위 순서로 테스트 -->
         <test name="pixel_4" preserve-order="false">
         ```
-### 2. 테스트 스크립트 작성
+### 2. 테스트 스크립트
 
 * @BeforeClass
 
@@ -184,7 +184,7 @@
     }
     ```
 
-### 3. 공통 유틸 작성
+### 3. 공통 유틸
 공통부분 모듈화. 모듈 중 다른 프로젝트에서도 쓸만한 모듈을 소개함
 
 * getScreenshot
