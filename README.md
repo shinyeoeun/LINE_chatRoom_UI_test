@@ -1,4 +1,4 @@
-# parallel TestAutomation for LINE App
+# Parallel TestAutomation for LINE App
 쳇룸,통화 등 두대 이상의 디바이스간의 커뮤니케이션이 필요한 테스트케이스를 자동화하기 위해 
 병렬로 여러 디바이스를 동시에 테스트하는 스크립트를 구현해보았다.
 
