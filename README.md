@@ -30,8 +30,61 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
 
 
 ## Description
+1. test suite용 xml파일을 작성 > 각 디바이스의 capability 값들을 정의
+- systemPort와 port값은 각 디바이스마다 다르게 설정해야함 (systemPort: 8201~ / port: 4724~)
 
+|Name|port|systemPort|
+|------|------|------|
+|Device A|4600|8202|
+|Device B|4700|8201|
 
+```xml
+<suite name="Suite" verbose="5" parallel="tests" thread-count="2">
+
+    <!-- <test name="pixel_4" preserve-order="false"> -->
+  
+    <!-- Device A -->
+    <test name="pixel_4">
+        <parameter name="platform" value="Android" />
+        <parameter name="appl" value="app" />
+        <parameter name="port" value="4600" />
+        <parameter name="ver" value="6.0" />
+        <parameter name="device" value="Pixel 4" />
+        <parameter name="udid" value="XXXXX"/>
+        <parameter name="autoname" value="uiautomator2"/>
+        <parameter name="systemp" value="8202"/>
+        <classes>
+            <class name="LineChatRoomTest_send"/>
+        </classes>
+    </test>
+
+    <!-- Device B -->
+    <test name="Galaxy_S10">
+        <parameter name="platform" value="Android" />
+        <parameter name="appl" value="app" />
+        <parameter name="port" value="4700" />
+        <parameter name="ver" value="9.0" />
+        <parameter name="device" value="Galaxy S10" />
+        <parameter name="udid" value="XXXXX"/>
+        <parameter name="autoname" value="uiautomator2"/>
+        <parameter name="systemp" value="8201"/>
+        <classes>
+            <class name="LineChatRoomTest_receive"/>
+        </classes>
+    </test>
+
+</suite>
+```
+
+- 하나의 스크립트를 여러 디바이스에서 동시에 실행하려면 preserve-order를 "false"로 지정 (디폴트값은 true) 
+
+```xml
+<test name="pixel_4" preserve-order="false">
+```
+
+```java
+
+```
 
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
