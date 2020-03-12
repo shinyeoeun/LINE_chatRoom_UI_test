@@ -25,7 +25,8 @@
 
 
 ## Test Result
-* 테스트 결과 리포트
+* 테스트 결과 리포트(html)
+결과리포트 파일명 포맷: LINE_TestAutomation_Report_{send/Receive}_{yyyy-MM-dd_HHmm}.html
 
 ![2020-03-11_10h25_15](https://user-images.githubusercontent.com/25470405/76374294-1f4b0880-6386-11ea-8d1b-3524916f4860.gif)
 
@@ -224,6 +225,11 @@
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76504044-42f77700-648a-11ea-9ddf-526d8c9ee2cd.png)
 
+
+## Usage
+1. 병렬테스트 환경 구축 (selenium grid 서버 ＆ Appium서버 실행)
+2. testNG > suite로 스크립트 실행
+3. 테스트 종료 후 생성되는 결과리포트(html) 확인
 
 ## References
 * https://appiumpro.com/editions/5
