@@ -41,16 +41,13 @@
     <suite name="Suite" verbose="5" parallel="tests" thread-count="2">
     ```
     
-    + parallel 
-    
+    + parallel <br/>
       병행처리 기준이 되는 단위. tests / classes / methods / suites 지정 가능
     
-    + thread-count 
-    
+    + thread-count <br/>
       동시에 시행되는 테스트 최대수 (고속도로의 차선같은 개념)
       
-    + verbose
-    
+    + verbose <br/>
       콘솔로그의 세부정보 레벨. 숫자가 클수록 상세한 로그를 출력
 
 * test
