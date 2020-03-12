@@ -129,23 +129,22 @@
 * @Test
 
     테스트 케이스 작성 <br/>
-    logger(for 테스트 결과리포트) 생성 > 실제 앱 조작 > 결과판정 순으로 동작
+    Test 생성(for extent reports) > 실제 앱 조작 > 결과판정 순으로 동작
 
     ```java
     @Test
     public void TC_03_msg_readed() throws Exception {
-        logger = report.startTest("Case：Device A 메시지읽음 표시");
-        logger.log(LogStatus.INFO, "Step: 읽은 메시지 표시 확인");
-        logger.log(LogStatus.INFO, "Expected Result: 읽은 메시지에 ”既読(읽음)” 표시됨");
+        test = report.startTest("Case：Device A 메시지읽음 표시");
+        test.log(LogStatus.INFO, "Step: 읽은 메시지 표시 확인");
+        test.log(LogStatus.INFO, "Expected Result: 읽은 메시지에 ”既読(읽음)” 표시됨");
 
         boolean isDisplayed = false;
-        while(isDisplayed){isDisplayed = android_utils.isElementDisplayed(driver, By.id(prefix + ":id/chathistory_row_read_count"));}
-        logger.log(LogStatus.INFO, logger.addScreenCapture(android_utils.getScreenshot(driver)));
+        while(isDisplayed){isDisplayed = android_utils.isElementDisplayed(driver, By.id("jp.naver.line.android:id/chathistory_row_read_count"));}
+        test.log(LogStatus.INFO, test.addScreenCapture(android_utils.getScreenshot(driver)));
 
-        logger.log(LogStatus.INFO, "Test Result: 텍스트> "\+driver.findElementById(prefix+":id/chathistory_row_read_count").getAttribute("text"));
-        Assert.assertEquals(driver.findElementById(prefix+":id/chathistory_row_read_count").getAttribute("text"), "既読");
+        test.log(LogStatus.INFO, "Test Result: 읽음표시 텍스트 > " + driver.findElementById("jp.naver.line.android:id/chathistory_row_read_count").getAttribute("text"));
+        Assert.assertEquals(driver.findElementById("jp.naver.line.android:id/chathistory_row_read_count").getAttribute("text"), "既読");
     }
-
     ```
     
 * @AfterMethod
@@ -157,14 +156,13 @@
     @AfterMethod
     public void getResult(ITestResult result) throws Exception {
         if (result.getStatus() == ITestResult.FAILURE){
-            logger.log(LogStatus.FAIL, result.getName());
-            logger.log(LogStatus.FAIL, result.getThrowable());
-            logger.log(LogStatus.FAIL, "Test Case Fail" + logger.addScreenCapture(android_utils.getScreenshot(driver)));
-
+            test.log(LogStatus.FAIL, result.getName());
+            test.log(LogStatus.FAIL, result.getThrowable());
+            test.log(LogStatus.FAIL, "Test Case Fail" + test.addScreenCapture(android_utils.getScreenshot(driver)));
         } else if (result.getStatus() == result.SUCCESS){
-            logger.log(LogStatus.PASS, result.getName());
+            test.log(LogStatus.PASS, result.getName());
         }
-        report.endTest(logger);
+        report.endTest(test);
         report.flush();
         }
  
