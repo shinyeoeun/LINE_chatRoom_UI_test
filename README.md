@@ -180,39 +180,40 @@
     ```
 
 ### 3. 공통 유틸
-공통부분 모듈화<br/>
+스크립트 공통부분 모듈화<br/>
 모듈 중 다른 프로젝트에서도 쓸만한 일부모듈을 소개함
 
 * getScreenshot
 
-디바이스 화면을 캡쳐하여 png로 저장해주고 그 경로를 반화하는 메소드<br/>
-이 경로는 테스트결과리포트 html img 태그에 매핑되어 스크린샷이 첨부된 결과리포트 작성 가능! 
-    ```java
-    static public String getScreenshot(WebDriver driver) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File src = ts.getScreenshotAs(OutputType.FILE);
-        String dest = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
-        File target = new File(dest);
-        FileUtils.copyFile(src, target);
+    디바이스 화면을 캡쳐하여 png로 저장해주고 그 경로를 반화하는 메소드<br/>
+    이 경로는 테스트결과리포트 html img 태그에 매핑되어 스크린샷이 첨부된 결과리포트 작성 가능! 
 
-        return dest;
-    }
+    ```java
+        static public String getScreenshot(WebDriver driver) throws IOException {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File src = ts.getScreenshotAs(OutputType.FILE);
+            String dest = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+            File target = new File(dest);
+            FileUtils.copyFile(src, target);
+
+            return dest;
+        }
     ```
 
 * isElementDisplayed
 
-특정요소가 화면에 표시되었는지를 판단하여 boolean값을 반환하는 메소드<br/>
-By 타입을 파라미터로 넘기기 때문에 xpath, id 등 다양한 요소타입 대응 가능!
+    특정요소가 화면에 표시되었는지를 판단하여 boolean값을 반환하는 메소드<br/>
+    By 타입을 파라미터로 넘기기 때문에 xpath, id 등 다양한 요소타입 대응 가능!
 
     ```java
-    static public boolean isElementDisplayed(AndroidDriver driver, By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
+        static public boolean isElementDisplayed(AndroidDriver driver, By by) {
+            try {
+                driver.findElement(by);
+                return true;
+            } catch (NoSuchElementException e) {
+                return false;
+            }
         }
-    }
     ```
     
 * API
