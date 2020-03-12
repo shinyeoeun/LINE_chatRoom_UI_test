@@ -66,8 +66,7 @@
             </classes>
         </test>
     ```
-    + parameter
-    
+    + parameter <br/> 
       각 디바이스의 capability 값들을 정의 <br/>
       ※ systemPort와 port값은 각 디바이스마다 다르게 설정해야함 (systemPort: 8201~ / port: 4724~) 아래는 예시
 
@@ -76,9 +75,10 @@
         |Device A|4600|8202|
         |Device B|4700|8201|
 
-    + classes
+    + classes <br/> 
+      테스트 실행 단위 <br/>
+      class가 아닌 package,method 단위로도 구성할수 있음
       
-      테스트 실행 단위. class가 아닌 package,method 단위로도 구성할수 있음
       ```xml
         <!-- method 단위로 작성한 경우 샘플 -->
         <classes>
@@ -91,9 +91,8 @@
         </classes>
         ```
     
-     + preserve-order
-     
-       같은 스크립트를 여러 디바이스에서 동시에 실행하려면를 "false"로 지정 <br/> 
+     + preserve-order <br/> 
+       같은 스크립트를 여러 디바이스에서 동시에 실행하려면 preserve-order를 "false"로 지정 <br/> 
        본 테스트는 test별로 각각 다른 스크립트를 사용하므로 default(true)로 지정  
         ```xml
         <!-- 무작위 순서로 테스트 -->
