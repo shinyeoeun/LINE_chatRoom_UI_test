@@ -1,11 +1,11 @@
 # parallel TestAutomation for LINE App
-Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테스트하는 스크립트 
+쳇룸,통화 등 두대 이상의 디바이스간의 커뮤니케이션이 필요한 테스트케이스를 자동화하기 위해 
+병렬로 여러 디바이스를 동시에 테스트하는 스크립트를 구현해보았다.
+
+* Using Tools
+    + Selenium Grid, Appium, TestNG, Maven, ExtentReports, uiautomator
 
 ## About Test
-2대의 디바이스에서 두명의 라인유저가 채팅과 통화를 주고받는 시나리오로 구성
-
-### Demo
-![chatroom](https://user-images.githubusercontent.com/25470405/76373396-a3e85780-6383-11ea-9269-d100f22d626a.gif)
 
 ### Scenario
     1. Device A: Device B 에게 텍스트 메시지 송신
@@ -14,12 +14,14 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
     4. Device B: 통화 수락 후 5초간 대기(통화상태)
     5. Device A: 통화 종료
 
+### Demo
+![chatroom](https://user-images.githubusercontent.com/25470405/76373396-a3e85780-6383-11ea-9269-d100f22d626a.gif)
+
 ### Test Devices
 |Name|Device|OS version|
 |------|------|------|
 |Device A|Pixel 4|10.0|
 |Device B|Galaxy S10|9.0|
-
 
 
 ## Test Result
@@ -182,8 +184,50 @@ Selenium Grid와 TestNG 프레임워크로 여러 디바이스를 동시에 테�
     }
     ```
 
+### 3. 공통 유틸 작성
+공통부분 모듈화. 모듈 중 다른 프로젝트에서도 쓸만한 모듈을 소개함
+
+* getScreenshot
+디바이스 화면을 캡쳐하여 png로 저장해주고 그 경로를 반화하는 메소드<br/>
+이 경로는 테스트결과리포트 html img 태그에 매핑되어 스크린샷이 첨부된 결과리포트 작성 가능! 
+    ```java
+    static public String getScreenshot(WebDriver driver) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File src = ts.getScreenshotAs(OutputType.FILE);
+        String dest = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+        File target = new File(dest);
+        FileUtils.copyFile(src, target);
+
+        return dest;
+    }
+    ```
+
+* isElementDisplayed
+특정요소가 화면에 표시되었는지를 판단하여 boolean값을 반환하는 메소드<br/>
+By 타입을 파라미터로 넘기기 때문에 xpath, id 등 다양한 요소타입 대응 가능!
+
+    ```java
+    static public boolean isElementDisplayed(AndroidDriver driver, By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    ```
+    
+* API
+개인프로젝트고 API 남길만한 코드는 아니지만 intelij 사용법 연습겸 공통모듈한정으로 javadoc을 작성해봄
+![2020-03-12_17h35_23](https://user-images.githubusercontent.com/25470405/76502864-29edc680-6488-11ea-8d54-14de1549dab4.png)
+
+javadoc 출력설정 
+![2020-03-12_12h36_20](https://user-images.githubusercontent.com/25470405/76502900-38d47900-6488-11ea-89e9-3e526d88b89f.png)
+
+
 ## Directory Structure
 ![2020-03-11_10h29_32](https://user-images.githubusercontent.com/25470405/76376558-e877f100-638b-11ea-84c9-280291c78fc5.png)
+
 
 ## Usage
 1. 병렬테스트환경 셋업
