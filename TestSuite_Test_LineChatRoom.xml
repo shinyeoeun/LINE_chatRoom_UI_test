@@ -2,35 +2,37 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" verbose="5" parallel="tests" thread-count="2">
 
+    <!-- <test name="pixel_4" preserve-order="false"> -->
+    <!-- ↑ 하나의 스크립트를 여러디바이스에서 동시에 실행하려면 preserve-order를 "false"로 지정할것! (디폴트값은 true) -->
 
-    <test name="pixel_4" preserve-order="true">
-
+    <!-- Device A -->
+    <test name="pixel_4">
         <parameter name="platform" value="Android" />
         <parameter name="appl" value="app" />
         <parameter name="port" value="4600" />
-        <parameter name="ver" value="6.0" />
+        <parameter name="platformVersion" value="6.0" />
         <parameter name="device" value="Pixel 4" />
         <parameter name="udid" value="10.33.67.212:5555"/>
-        <parameter name="autoname" value="uiautomator2"/>
-        <parameter name="systemp" value="8202"/>
+        <parameter name="automationName" value="uiautomator2"/>
+        <parameter name="systemPort" value="8202"/>
         <classes>
             <class name="LineChatRoomTest_send"/>
         </classes>
     </test>
 
-    <test name="Galaxy_S10" preserve-order="true">
-
+    <!-- Device B -->
+    <test name="Galaxy_S10">
         <parameter name="platform" value="Android" />
         <parameter name="appl" value="app" />
         <parameter name="port" value="4700" />
-        <parameter name="ver" value="9.0" />
-        <parameter name="device" value="Galaxy S10" />
+        <parameter name="platformVersion" value="9.0" />
+        <parameter name="deviceName" value="Galaxy S10" />
         <parameter name="udid" value="10.33.68.103:5555"/>
-        <parameter name="autoname" value="uiautomator2"/>
-        <parameter name="systemp" value="8201"/>
+        <parameter name="automationName" value="uiautomator2"/>
+        <parameter name="systemPort" value="8201"/>
         <classes>
             <class name="LineChatRoomTest_receive"/>
         </classes>
-    </test> <!-- start -->
+    </test>
 
-</suite> <!-- Suite -->
+</suite>
