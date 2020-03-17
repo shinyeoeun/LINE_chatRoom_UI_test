@@ -156,9 +156,11 @@ public class LineChatRoomTest_send {
         report.flush();
         }
 
-    @AfterClass
-    public void endTest() {
-        driver.quit();
+    @AfterTest(alwaysRun = true)
+    public void teardown() throws Exception {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }
