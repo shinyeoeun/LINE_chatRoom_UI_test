@@ -232,5 +232,6 @@
 3. 테스트 종료 후 생성되는 결과리포트(html) 확인
 
 ## References
-* https://appiumpro.com/editions/5
-* https://blog.naver.com/wisestone2007/221321329618
+* Check if an element is present
+> https://discuss.appium.io/t/check-if-an-element-is-present/584
+
