@@ -52,7 +52,7 @@ public class LineChatRoomTest_receive {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
             // 테스트 결과 리포트 설정
-            report = new ExtentReports(System.getProperty("user.dir") + "\\LINE_TestAutomation_Report_Send_"+android_utils.getNowDateTime()+".html");
+            report = new ExtentReports(System.getProperty("user.dir") + "/report/LINE_TestAutomation_Report_Send_"+android_utils.getNowDateTime()+".html");
             report.loadConfig(new File("report_config.xml"));
         }
     }

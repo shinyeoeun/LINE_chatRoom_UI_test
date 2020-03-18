@@ -40,7 +40,7 @@ public class android_utils {
     static public String getScreenshot(WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
-        String dest = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+        String dest = System.getProperty("user.dir")+"/report/screenshot/"+System.currentTimeMillis()+".png";
         File target = new File(dest);
         FileUtils.copyFile(src, target);
 
