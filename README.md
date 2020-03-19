@@ -7,6 +7,9 @@
 
 ## About Test
 
+### Test Flow
+![2020-03-19_18h16_07](https://user-images.githubusercontent.com/25470405/77050911-ca566480-6a0d-11ea-8dbf-a7f5fd38f796.png)
+
 ### Scenario
     1. Device A: Device B 에게 텍스트 메시지 송신
     2. Device B: 수신메시지 확인(텍스트 내용 & 송신시간)
