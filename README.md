@@ -28,11 +28,10 @@
 
 
 ## Test Result
+
 * 테스트 결과 리포트(html)
-결과리포트 파일명 포맷: LINE_TestAutomation_Report_{send/Receive}_{yyyy-MM-dd_HHmm}.html
 
 ![2020-03-11_10h25_15](https://user-images.githubusercontent.com/25470405/76374294-1f4b0880-6386-11ea-8d1b-3524916f4860.gif)
-
 
 
 ## Description
