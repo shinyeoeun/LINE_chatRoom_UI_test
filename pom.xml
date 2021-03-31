@@ -59,7 +59,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>25.1-jre</version>
+            <version>29.0-jre</version>
         </dependency>
 
         <!-- 파일 입출력 처리에 편리한 자바 공통 유틸 클래스 패키지 -->
